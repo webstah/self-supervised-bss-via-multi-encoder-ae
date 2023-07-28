@@ -59,7 +59,7 @@ We evaluate our methodology by extracting respiratory rate from the estimated so
 
 | Method (Input)      | Breaths/Min. MAE $\downarrow$| Breaths/Min. MAE $\downarrow$| Method (Input)                  | Breaths/Min. MAE $\downarrow$ | Breaths/Min. MAE $\downarrow$ |
 |---------------------|------------------------------|------------------------------|---------------------------------|-------------------------------|-------------------------------|
-| **BSS**             | **Nasal Press.**             | **Thor.**                    | **Heuristic**                   | **Nasal Press.**              | **Thor.**                     |
+| **BSS**             | **Nasal Pressure**           | **Thoracic Excursion**       | **Heuristic**                   | **Nasal Pressure**            | **Thoracic Excursion**        |
 | Ours (PPG)          | 1.51                         | 1.50                         | (Muniyandi & Soni, 2017) (ECG)  | 2.38                          | 2.04                          |
 | Ours (ECG)          | 1.73                         | 1.59                         | (Charlton et al., 2016) (ECG)   | 2.38                          | 2.05                          |
 |                     |                              |                              | (van Gent et al., 2019) (ECG)   | 2.27                          | 1.95                          |
@@ -67,7 +67,7 @@ We evaluate our methodology by extracting respiratory rate from the estimated so
 
 | Method (Input)      | Breaths/Min. MAE $\downarrow$| Breaths/Min. MAE $\downarrow$| Method (Input)                  | Breaths/Min. MAE $\downarrow$ | Breaths/Min. MAE $\downarrow$ |
 |---------------------|------------------------------|------------------------------|---------------------------------|-------------------------------|-------------------------------|
-| **Supervised**      | **Nasal Press.**             | **Thor.**                    |  **Direct Comparison**          | **Nasal Press.**              | **Thor.**                     |
+| **Supervised**      | **Nasal Pressure**           | **Thoracic Excursion**       |  **Direct Comparison**          | **Nasal Pressure**            | **Thoracic Excursion**        |
 | AE (PPG)            | 0.46                         | 2.07                         | Thor.                           | 1.33                          | --                            |
 | AE (ECG)            | 0.48                         | 2.16                         |                                 |                               |                               |
 
