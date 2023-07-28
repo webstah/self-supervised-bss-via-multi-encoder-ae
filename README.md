@@ -7,9 +7,15 @@
 We propose a novel methodology for addressing blind source separation of non-linear mixtures via multi-encoder single-decoder autoencoders with fully self-supervised learning. During training, our methodology unmixes the input into the multiple encoder output spaces and then remixes these representations within the single decoder for a simple reconstruction of the input. Then to perform source inference we introduce a novel encoding masking technique whereby masking out all but one of the encodings enables the decoder to estimate a source signal. To achieve consistent source separation, we also introduce a so-called _pathway separation loss_ for the decoder that encourages sparsity between the unmixed encoding spaces throughout and a so-called _zero reconstruction loss_ on the decoder that assists with coherent source estimations. We conduct experiments on a toy dataset, the _triangles & circles_ dataset, and with real-world biosignal recordings from a polysomnography sleep study for extracting respiration.
 <p align="center">
     <img src="assets/bss_graph_1.png" alt="drawing" width="50%" height="50%"/>
+  <p align="center">
+      a. Training procedure.
+  </p>
 </p>
 <p align="center">
     <img src="assets/bss_graph_2.png" alt="drawing" width="50%" height="50%"/>
+    <p align="center">
+      a. Inference procedure (source estimation).
+  </p>
 </p>
 
 ## Experiments
@@ -25,14 +31,14 @@ We propose a novel methodology for addressing blind source separation of non-lin
     <img src="assets/training_demo.gif" alt="drawing" width="35%" height="35%"/>
 </p>
 
-#### 3. Example blind source separation results
+#### 3. Example blind source separation result samples
 <p align="center">
     <img src="assets/tri_circ_1.png" alt="drawing" width="40%" height="40%"/> &nbsp; <img src="assets/tri_circ_2.png" alt="drawing" width="40%" height="40%"/>
 </p>
 
 
 ### ECG & PPG Respiratory Source Extraction
-#### 1. Replicating results on ECG & PPG data from the MESA dataset
+#### 1. Reproducing our results on ECG & PPG data from the MESA dataset
 You can request access to the Multi-Ethnic Study of Atherosclerosis (MESA) Sleep study[^1][^2] data [here](https://sleepdata.org/datasets/mesa). After downloading the dataset, use the [PyEDFlib](https://pyedflib.readthedocs.io/en/latest/) library to extract the ECG, PPG, thoracic excursion, and nasal pressure signals from each recording. We then randomly choose 1,000 recordings for our training(and validation) and testing splits (45%, 5%, and 50% respectively). Then for each data split we extract segments (each segment with the four simultaneously measured biosignals of interest) with length 12288 as NumPy arrays, resampling each signal to 200hz. At this point you may use a library for removing bad samples such as the [NeuroKit2](https://neuropsychology.github.io/NeuroKit/index.html) library[^3]. We then pickle a list of our segments for ECG and for PPG for both training and testing splits. This file can then be passed to our dataloader (see [utils/dataloader/mesa.py](utils/dataloader/mesa.py)) via a setting in the config files. *We do not provide this processing code as it is specific to our NAS and compute configuration.*
 
 After the data processing is complete and the configuration files updated with the proper data path (see [config/experiment_config/](config/experiment_config/)), you can train a model for the ECG or PPG experiments with the following commands: 
@@ -51,17 +57,17 @@ python trainer.py experiment_config=mesa_ppg_bss
 
 We evaluate our methodology by extracting respiratory rate from the estimated source (manually reviewed to correspond with respiration) and comparing it the extracted respiratory rate of a simultaneously measured reference respiratory signal, nasal pressure or thoracic excursion.
 
-| Method (Type)       | Breaths/Min. MAE $\downarrow$ | Breaths/Min. MAE $\downarrow$ | Method (Type)                 | Breaths/Min. MAE $\downarrow$ | Breaths/Min. MAE $\downarrow$ |
+| Method (Input)      | Breaths/Min. MAE $\downarrow$| Breaths/Min. MAE $\downarrow$| Method (Input)                  | Breaths/Min. MAE $\downarrow$ | Breaths/Min. MAE $\downarrow$ |
 |---------------------|------------------------------|------------------------------|---------------------------------|-------------------------------|-------------------------------|
 | **BSS**             | **Nasal Press.**             | **Thor.**                    | **Heuristic**                   | **Nasal Press.**              | **Thor.**                     |
-| Ours (PPG)          | 1.51                         | 1.50                         | (Muniyandi & Soni, 2017)  (ECG) | 2.38                          | 2.04                          |
+| Ours (PPG)          | 1.51                         | 1.50                         | (Muniyandi & Soni, 2017) (ECG)  | 2.38                          | 2.04                          |
 | Ours (ECG)          | 1.73                         | 1.59                         | (Charlton et al., 2016) (ECG)   | 2.38                          | 2.05                          |
 |                     |                              |                              | (van Gent et al., 2019) (ECG)   | 2.27                          | 1.95                          |
-|                     |                              |                              | (Sarkar, 2015)  (ECG)           | 2.26                          | 1.94                          |
+|                     |                              |                              | (Sarkar, 2015) (ECG)            | 2.26                          | 1.94                          |
 
-| Method (Type)       | Breaths/Min. MAE $\downarrow$ | Breaths/Min. MAE $\downarrow$ | Method (Type)                 | Breaths/Min. MAE $\downarrow$ | Breaths/Min. MAE $\downarrow$ |
+| Method (Input)      | Breaths/Min. MAE $\downarrow$| Breaths/Min. MAE $\downarrow$| Method (Input)                  | Breaths/Min. MAE $\downarrow$ | Breaths/Min. MAE $\downarrow$ |
 |---------------------|------------------------------|------------------------------|---------------------------------|-------------------------------|-------------------------------|
-| **Supervised**      |                              |                              |  **Direct Comparison**          |                               |                               |
+| **Supervised**      | **Nasal Press.**             | **Thor.**                    |  **Direct Comparison**          | **Nasal Press.**              | **Thor.**                     |
 | AE (PPG)            | 0.46                         | 2.07                         | Thor.                           | 1.33                          | --                            |
 | AE (ECG)            | 0.48                         | 2.16                         |                                 |                               |                               |
 
