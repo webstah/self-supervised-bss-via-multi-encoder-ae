@@ -1,6 +1,6 @@
 defaults:
  - _self_
- - experiment_config:
+ - experiment_config: tri_and_circ_bss
 checkpoint:
 
 # system

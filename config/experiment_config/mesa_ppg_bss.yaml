@@ -1,6 +1,6 @@
-name: mesa_ppg_final
+name: mesa_ppg_bss
 num_classes:
-experiment: [experiments.mesa_final, Experiment]
+experiment: [experiments.mesa_bss, Experiment]
 model: [models.multi_cnne_cnn_ae_1d, ConvolutionalAutoencoder]
 
 # hyperparameters

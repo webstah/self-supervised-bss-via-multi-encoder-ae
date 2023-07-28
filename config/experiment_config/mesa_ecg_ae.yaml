@@ -11,7 +11,7 @@ gradient_clip_val:
 
 # model parameters
 channels: [16, 16, 32, 32, 64, 64, 128, 128]
-hidden: 32 #16 #32 #64
+hidden: 32
 
 # training params
 max_epochs: 20
@@ -19,7 +19,7 @@ batch_size: 512
 
 # data params
 dataloader: [utils.dataloader.mesa, DataModule]
-data_path: data/mesa_ecg_clean/
+data_path: data/mesa_ecg/
 num_workers: 4
 input_length: 12288
 input_channels: 1

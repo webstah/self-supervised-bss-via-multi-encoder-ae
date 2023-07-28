@@ -1,4 +1,4 @@
-name: trinagles_and_circles
+name: tri_and_circ_bss
 num_classes:
 experiment: [experiments.triangles_circles, Experiment]
 model: [models.multi_cnne_cnn_ae_2d, ConvolutionalAutoencoder]
