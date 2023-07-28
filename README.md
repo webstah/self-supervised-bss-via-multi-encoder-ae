@@ -3,9 +3,9 @@
 ## Methodology Overview
 We propose a novel methodology for addressing blind source separation of non-linear mixtures via multi-encoder single-decoder autoencoders with fully self-supervised learning. During training, our methodology unmixes the input into the multiple encoder output spaces and then remixes these representations within the single decoder for a simple reconstruction of the input. Then to perform source inference we introduce a novel encoding masking technique whereby masking out all but one of the encodings enables the decoder to estimate a source signal. To achieve consistent source separation, we also introduce a so-called _pathway separation loss_ for the decoder that encourages sparsity between the unmixed encoding spaces throughout and a so-called _zero reconstruction loss_ on the decoder that assists with coherent source estimations. We conduct experiments on a toy dataset, the _triangles & circles_ dataset, and with real-world biosignal recordings from a polysomnography sleep study for extracting respiration.
 
-<img src="assets/bss_graph_1.png" alt="drawing" width="30%" height="30%"/>
+<img src="assets/bss_graph_1.png" alt="drawing" width="50%" height="50%"/>
 
-<img src="assets/bss_graph_2.png" alt="drawing" width="30%" height="30%"/>
+<img src="assets/bss_graph_2.png" alt="drawing" width="50%" height="50%"/>
 
 
 ### Getting Started with the _triangles & circles_ dataset
