@@ -76,8 +76,8 @@ We evaluate our methodology by extracting respiratory rate from the estimated so
 
 | Method (Input)      | Breaths/Min. MAE $\downarrow$| Breaths/Min. MAE $\downarrow$| Method (Input)                  | Breaths/Min. MAE $\downarrow$ | Breaths/Min. MAE $\downarrow$ |
 |---------------------|------------------------------|------------------------------|---------------------------------|-------------------------------|-------------------------------|
-| **Supervised** (Nasal Presssure as Target)      | **Nasal Pressure**           | **Thoracic Excursion**       |  **Direct Comparison**          | **Nasal Pressure**            | **Thoracic Excursion**        |
-| AE (PPG)            | 0.46                         | 2.07                         | Thor.                           | 1.33                          | --                            |
+| **Supervised** (Nasal Presssure as Target)| **Nasal Pressure**           | **Thoracic Excursion**       |  **Direct Comparison**          | **Nasal Pressure**            | **Thoracic Excursion**        |
+| AE (PPG)            | 0.46                         | 2.07                         | Thoracic Excursion              | 1.33                          | --                            |
 | AE (ECG)            | 0.48                         | 2.16                         |                                 |                               |                               |
 
 
