@@ -6,7 +6,7 @@
 **Paper link (pdf):** _coming soon, undergoing peer review_
 
 ## Summary
-We propose a novel framework for addressing blind source separation of non-linear mixtures via multi-encoder single-decoder autoencoders with fully self-supervised learning. During training, our framework unmixes the input into the multiple encoder output spaces and then remixes these representations within the single decoder for a simple reconstruction of the input. Then to perform source inference we introduce a novel _encoding masking_ technique whereby masking out all but one of the encodings enables the decoder to estimate a source signal. To achieve consistent source separation, we also introduce a so-called **pathway separation loss** for the decoder that encourages sparsity between the unmixed encoding spaces throughout and a so-called **zero reconstruction loss** on the decoder that assists with coherent source estimations. We conduct experiments on a toy dataset, the _triangles & circles_ dataset, and with real-world biosignal recordings from a polysomnography sleep study for extracting respiration.
+We propose a novel method for addressing blind source separation of non-linear mixtures via multi-encoder single-decoder autoencoders with fully self-supervised learning. During training, our method unmixes the input into the multiple encoder output spaces and then remixes these representations within the single decoder for a simple reconstruction of the input. Then to perform source inference we introduce a novel _encoding masking_ technique whereby masking out all but one of the encodings enables the decoder to estimate a source signal. To achieve consistent source separation, we also introduce a so-called **pathway separation loss** for the decoder that encourages sparsity between the unmixed encoding spaces throughout and a so-called **zero reconstruction loss** on the decoder that assists with coherent source estimations. We conduct experiments on a toy dataset, the _triangles & circles_ dataset, and with real-world biosignal recordings from a polysomnography sleep study for extracting respiration.
 <p align="center">
     <img src="assets/bss_graph_1.png" alt="drawing" width="50%" height="50%"/>
   <p align="center">
@@ -21,7 +21,7 @@ We propose a novel framework for addressing blind source separation of non-linea
 </p>
 
 ## Method & Key Contributions
-As the foundation of our proposed framework, we use multi-encoder autoencoders such that each encoder recieves the same input, and the outputs of each encoder are concatenated along the channel dimension before being propagated through the single decoder network. In addition, we propose two novel regularization methods and a novel encoding masking technique for inference. These three contributions are outlined below...
+As the foundation of our proposed method, we use multi-encoder autoencoders such that each encoder recieves the same input, and the outputs of each encoder are concatenated along the channel dimension before being propagated through the single decoder network. In addition, we propose two novel regularization methods and a novel encoding masking technique for inference. These three contributions are outlined below...
 ### 1. Enoding masking for blind source estimation
 To estimate a source (i.e. seperate a source) with a trained model the $n\text{th}$ encoder $E^{n}$ left active while all other encodings are masked out with zero vectors $\mathbf{0}$. The concatenation of the active encoding with the masked encodings $Z^n$ are passed into the decoder $D$ to give the source estimation $\hat{s}^n$.
 
@@ -66,7 +66,7 @@ The _triangles & circles_ dataset consists of non-linear mixtures of triangle an
 <p align="center">
     <img src="assets/tri_circ_1.png" alt="drawing" width="40%" height="40%"/> &nbsp; <img src="assets/tri_circ_2.png" alt="drawing" width="40%" height="40%"/>
     <p align="center">
-      Figure 4. Even though there are two sources in the mixtures, we choose three encoders to show that the number of sources can be overestimated as the proposed framework will converge on a solution where only two of the encoders are responsible for seperating the triangles and circles.
+      Figure 4. Even though there are two sources in the mixtures, we choose three encoders to show that the number of sources can be overestimated as the proposed method will converge on a solution where only two of the encoders are responsible for seperating the triangles and circles.
     </p>
 </p>
 
@@ -92,7 +92,7 @@ python trainer.py experiment_config=mesa_ppg_bss
       Figure 5.
 </p>
 
-We evaluate our framework by extracting respiratory rate from the estimated source (manually reviewed to correspond with respiration) and comparing it the extracted respiratory rate of a simultaneously measured reference respiratory signal, nasal pressure or thoracic excursion.
+We evaluate our method by extracting respiratory rate from the estimated source (manually reviewed to correspond with respiration) and comparing it the extracted respiratory rate of a simultaneously measured reference respiratory signal, nasal pressure or thoracic excursion.
 
 | Method (Input)      | Breaths/Min. MAE $\downarrow$| Breaths/Min. MAE $\downarrow$| Method (Input)                  | Breaths/Min. MAE $\downarrow$ | Breaths/Min. MAE $\downarrow$ |
 |---------------------|------------------------------|------------------------------|---------------------------------|-------------------------------|-------------------------------|
