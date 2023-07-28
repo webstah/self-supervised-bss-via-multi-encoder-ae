@@ -10,13 +10,13 @@ We propose a novel methodology for addressing blind source separation of non-lin
 <p align="center">
     <img src="assets/bss_graph_1.png" alt="drawing" width="50%" height="50%"/>
   <p align="center">
-      a. Training procedure.
+      Figure 1a. Training procedure.
   </p>
 </p>
 <p align="center">
     <img src="assets/bss_graph_2.png" alt="drawing" width="50%" height="50%"/>
     <p align="center">
-      b. Inference procedure (source estimation).
+      Figure 1b. Inference procedure (source estimation).
   </p>
 </p>
 
@@ -30,7 +30,15 @@ $Z^n = \left[\mathbf{0} \oplus \ldots \oplus E^{n}(x)  \oplus \ldots \oplus \mat
 $\hat{s}^n = D_{\phi}(Z^n)$
 
 ### 2. Pathway separation loss
-The pathway separation loss is applied to the weights each layer in the decoder (except the output layer) to encourage sparse mixing of the encodings and their mappings throughout the decoder. This is done by partitioning the weights into a set of blocks that have input dimensionality matching the individual encoder outputs, and then decaying the off-diagonal blocks (parameters responsible for mixing the encodings) towards zero. See [models/separation_loss.py](models/separation_loss.py) for our two proposed approaches to the pathway separation loss. The term "pathway" comes from the fact that as the off-diagonal blocks decay towards zero, the on-diagonal blocks create a pathway from layer to layer in the decoder where little mixing of the encoding spaces occurs.
+The pathway separation loss is applied along the channel dimension for each layer's weight in the decoder (except the output layer) to encourage sparse mixing of the encodings and their mappings throughout the decoder. This is done by partitioning the weights into a set of blocks that have input dimensionality matching the individual encoder outputs, and then decaying the off-diagonal blocks (parameters responsible for mixing the encodings) towards zero. See [models/separation_loss.py](models/separation_loss.py) for our two proposed approaches to the pathway separation loss.
+<p align="center">
+  <img src="assets/ecg_w.png" alt="drawing" width="90%" height="90%"/>
+    <p align="center">
+      Figure 2. The final decoder weights of the multi-encoder autoencoder model trained on the ECG data are visualized above. The absolute values of the weights are summed along the spatial dimensions to show the effect of the pathway separation loss.
+  </p>
+</p>
+
+The term "pathway" comes from the fact that as the off-diagonal blocks decay towards zero, the on-diagonal blocks create a pathway from layer to layer in the decoder where little mixing of the encoding spaces occurs i.e. each encoding gets a path dense connections through the decoder.
 ### 3. Zero reconstruction loss
 
 
