@@ -1,7 +1,7 @@
 name: tri_and_circ_bss
 num_classes:
 experiment: [experiments.triangles_circles, Experiment]
-model: [models.multi_cnne_cnn_ae_2d, ConvolutionalAutoencoder]
+model: [models.cnn_multi_enc_ae_2d, ConvolutionalAutoencoder]
 
 # hyperparameters
 lr: 1e-3
