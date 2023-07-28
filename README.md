@@ -41,7 +41,7 @@ The pathway separation loss is applied along the channel dimension for each laye
 The term "pathway" comes from the fact that as the off-diagonal blocks decay towards zero, the on-diagonal blocks create a pathway from layer to layer in the decoder where little mixing of the encoding spaces occurs i.e. each encoding gets its own separate set of densely connected blocks through the decoder.
 
 ### 3. Zero reconstruction loss
-The zero reconstruction loss is proposed to ensure that masked source encodings have minimal contribution to the final source estimation. For the zero reconstruction loss, an all-zero encoding vector $Z_{\text{zero}}$ is passed into the decoder, and the loss between the reconstruction $\hat{x}_{\text{zero}}$ and the target $x_{\text{zero}}$, an all-zero vector equal to the output size, is minimized.
+The zero reconstruction loss is proposed to ensure that masked source encodings have minimal contribution to the final source estimation. For the zero reconstruction loss, an all-zero encoding vector $Z_{\text{zero}}$ is passed into the decoder, and the loss between the reconstruction $\hat{x}$ and the target $x_{\text{zero}}$, an all-zero vector equal to the output size, is minimized.
 
 $$\mathcal{L}_{\text{zero recon.}} = \text{BCE}(x_{\text{zero}}, D_{\phi}(Z_{\text{zero}}))$$
 
