@@ -6,7 +6,7 @@
 **Paper link (pdf):** _coming soon, undergoing peer review_
 
 ## Methodology Overview
-We propose a novel methodology for addressing blind source separation of non-linear mixtures via multi-encoder single-decoder autoencoders with fully self-supervised learning. During training, our methodology unmixes the input into the multiple encoder output spaces and then remixes these representations within the single decoder for a simple reconstruction of the input. Then to perform source inference we introduce a novel encoding masking technique whereby masking out all but one of the encodings enables the decoder to estimate a source signal. To achieve consistent source separation, we also introduce a so-called _pathway separation loss_ for the decoder that encourages sparsity between the unmixed encoding spaces throughout and a so-called _zero reconstruction loss_ on the decoder that assists with coherent source estimations. We conduct experiments on a toy dataset, the _triangles & circles_ dataset, and with real-world biosignal recordings from a polysomnography sleep study for extracting respiration.
+We propose a novel methodology for addressing blind source separation of non-linear mixtures via multi-encoder single-decoder autoencoders with fully self-supervised learning. During training, our methodology unmixes the input into the multiple encoder output spaces and then remixes these representations within the single decoder for a simple reconstruction of the input. Then to perform source inference we introduce a novel _encoding masking_ technique whereby masking out all but one of the encodings enables the decoder to estimate a source signal. To achieve consistent source separation, we also introduce a so-called **pathway separation loss** for the decoder that encourages sparsity between the unmixed encoding spaces throughout and a so-called **zero reconstruction loss** on the decoder that assists with coherent source estimations. We conduct experiments on a toy dataset, the _triangles & circles_ dataset, and with real-world biosignal recordings from a polysomnography sleep study for extracting respiration.
 <p align="center">
     <img src="assets/bss_graph_1.png" alt="drawing" width="50%" height="50%"/>
   <p align="center">
@@ -20,6 +20,11 @@ We propose a novel methodology for addressing blind source separation of non-lin
   </p>
 </p>
 
+### 1. Pathway separation loss
+
+### 2. Zero reconstruction loss
+
+### 3. Enoding masking for blind source estimation
 
 
 ## Experiments
@@ -53,10 +58,10 @@ python trainer.py experiment_config=mesa_ppg_bss
 
 #### 2. Results
 <p align="center">
-    <img src="assets/ppg.png" alt="drawing" width="60%" height="60%"/>
+    <img src="assets/ppg.png" alt="drawing" width="65%" height="65%"/>
 </p>
 <p align="center">
-    <img src="assets/ecg.png" alt="drawing" width="60%" height="60%"/>
+    <img src="assets/ecg.png" alt="drawing" width="65%" height="65%"/>
 </p>
 
 We evaluate our methodology by extracting respiratory rate from the estimated source (manually reviewed to correspond with respiration) and comparing it the extracted respiratory rate of a simultaneously measured reference respiratory signal, nasal pressure or thoracic excursion.
