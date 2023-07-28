@@ -21,7 +21,7 @@ We propose a novel methodology for addressing blind source separation of non-lin
 </p>
 
 ## Method & Key Contributions
-As the foundation of our proposed methodology, we use multi-encoder autoencoders such that each encoder recieves the same input, and the outputs of each encoder are concatenated along the channel dimension before being propagated thorugh the single decoder network. In addition, we propose two novel regularization methods and a novel encoding masking technique for inference. These three contributions are outlined below...
+As the foundation of our proposed methodology, we use multi-encoder autoencoders such that each encoder recieves the same input, and the outputs of each encoder are concatenated along the channel dimension before being propagated through the single decoder network. In addition, we propose two novel regularization methods and a novel encoding masking technique for inference. These three contributions are outlined below...
 ### 1. Enoding masking for blind source estimation
 To estimate a source (i.e. seperate a source) with a trained model the $n\text{th}$ encoder $E^{n}$ left active while all other encodings are masked out with zero vectors $\mathbf{0}$. The concatenation of the active encoding with the masked encodings $Z^n$ are passed into the decoder $D$ to give the source estimation $\hat{s}^n$.
 
@@ -109,7 +109,7 @@ We evaluate our methodology by extracting respiratory rate from the estimated so
 | AE (ECG)            | 0.48                         | 2.16                         |                                 |                               |                               |
 
 ### Cite our work
-Our work, 'Self-Supervised Blind Source Separation via Multi-Encoder Autoencoders', is currently under review. If you find this repository helpful, please cite us.
+Our work, _Self-Supervised Blind Source Separation via Multi-Encoder Autoencoders_, is currently under review. If you find this repository helpful, please cite us.
 ```
 @software{webster2023,
   author = {Webster, M.B. and Lee Joonnyong},
