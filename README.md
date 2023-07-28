@@ -27,7 +27,7 @@ We propose a novel methodology for addressing blind source separation of non-lin
 
 #### 3. Example blind source separation results
 <p align="center">
-    <img src="assets/tri_circ_1.png" alt="drawing" width="40%" height="40%"/> $~$ <img src="assets/tri_circ_2.png" alt="drawing" width="40%" height="40%"/>
+    <img src="assets/tri_circ_1.png" alt="drawing" width="40%" height="40%"/> &nbsp; <img src="assets/tri_circ_2.png" alt="drawing" width="40%" height="40%"/>
 </p>
 
 
