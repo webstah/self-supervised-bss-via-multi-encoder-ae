@@ -1,0 +1,43 @@
+name: trinagles_and_circles
+num_classes:
+experiment: [experiments.triangles_circles, Experiment]
+model: [models.multi_cnne_cnn_ae_2d, ConvolutionalAutoencoder]
+
+# hyperparameters
+lr: 1e-3
+lr_step_size: 50
+weight_decay: 1e-5
+gradient_clip_val:
+sep_loss: true
+sep_lr: 5e-1
+sep_norm: L1
+zero_loss: true
+zero_lr: 1e-2
+use_weight_norm: true
+z_decay: 1e-2
+
+# model parameters
+channels: [24, 48, 96, 144]
+num_encoders: 3
+hidden: 96
+norm_type: group_norm
+
+# training params
+max_epochs: 100
+batch_size: 256
+
+# data params
+dataloader: [utils.dataloader.triangles_circles, DataModule]
+data_path: data/single_channel_nonlinear_mixing_tri_circ.pickle
+num_workers: 4
+image_hw: 64
+input_channels: 1
+
+# checkpointing
+monitor: recon_loss/val
+monitor_mode: min
+
+# plots
+save_plots: true
+plot_dir: ./plots/
+plot_step: 50

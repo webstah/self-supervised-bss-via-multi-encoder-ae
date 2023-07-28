@@ -1,0 +1,7 @@
+defaults:
+ - _self_
+ - experiment_config:
+checkpoint:
+
+# system
+gpus: 1

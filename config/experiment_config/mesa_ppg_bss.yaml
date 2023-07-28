@@ -1,0 +1,44 @@
+name: mesa_ppg_final
+num_classes:
+experiment: [experiments.mesa_final, Experiment]
+model: [models.multi_cnne_cnn_ae_1d, ConvolutionalAutoencoder]
+
+# hyperparameters
+lr: 1e-3
+lr_step_size: 50
+weight_decay: 1e-6
+gradient_clip_val: 0.5
+sep_loss: true
+sep_lr: 1e-3
+sep_norm: L1
+zero_loss: true
+zero_lr: 1e-2
+use_weight_norm: true
+
+# model parameters
+channels: [32, 32, 64, 64, 128, 128, 256, 256]
+num_encoders: 8
+hidden: 64
+norm_type: group_norm
+
+# training params
+max_epochs: 50
+batch_size: 256
+
+# data params
+dataloader: [utils.dataloader.mesa, DataModule]
+data_path: data/mesa_ppg/
+num_workers: 4
+input_length: 12288
+input_padding: 0
+input_channels: 1
+input_signal_type: PPG
+
+# checkpointing
+monitor: recon_loss/train
+monitor_mode: min
+
+# plots
+save_plots: true
+plot_dir: ./plots/
+plot_step: 50
