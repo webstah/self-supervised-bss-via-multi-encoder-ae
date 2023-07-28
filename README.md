@@ -1,5 +1,5 @@
 
-# <img align="left" width="96" src="assets/ICON.png" alt="Icon"> Self-Supervised Blind Source Separation via Multi-Encoder Autoencoders
+# <img align="left" width="128" src="assets/ICON.png" alt="Icon"> Self-Supervised Blind Source Separation via Multi-Encoder Autoencoders
 
 ## Methodology Overview
 We propose a novel methodology for addressing blind source separation of non-linear mixtures via multi-encoder single-decoder autoencoders with fully self-supervised learning. During training, our methodology unmixes the input into the multiple encoder output spaces and then remixes these representations within the single decoder for a simple reconstruction of the input. Then to perform source inference we introduce a novel encoding masking technique whereby masking out all but one of the encodings enables the decoder to estimate a source signal. To achieve consistent source separation, we also introduce a so-called _pathway separation loss_ for the decoder that encourages sparsity between the unmixed encoding spaces throughout and a so-called _zero reconstruction loss_ on the decoder that assists with coherent source estimations. We conduct experiments on a toy dataset, the _triangles & circles_ dataset, and with real-world biosignal recordings from a polysomnography sleep study for extracting respiration.
@@ -23,7 +23,7 @@ We propose a novel methodology for addressing blind source separation of non-lin
     <img src="assets/training_demo.gif" alt="drawing" width="35%" height="35%"/>
 </p>
 
-### 3. Example blind source separation results
+#### 3. Example blind source separation results
 
 
 
