@@ -23,24 +23,27 @@ We propose a novel methodology for addressing blind source separation of non-lin
 ## Method & Key Contributions
 As the foundation of our proposed methodology, we use multi-encoder autoencoders such that each encoder recieves the same input, and the outputs of each encoder are concatenated along the channel dimension before being propagated thorugh the single decoder network. In addition, we propose two novel regularization methods and a novel encoding masking technique for inference. These three contributions are outlined below...
 ### 1. Enoding masking for blind source estimation
-To estimate a source (i.e. seperate a source) with a trained model the $n\text{th}$ encoder $E^{n}$ left active while all other encodings are masked out with zero vectors $\mathbf{0}$. The concatenation of the active encoding with the masked encodings $Z^n$ are passed into the decoder to give the source estimation $\hat{s}^n$.
+To estimate a source (i.e. seperate a source) with a trained model the $n\text{th}$ encoder $E^{n}$ left active while all other encodings are masked out with zero vectors $\mathbf{0}$. The concatenation of the active encoding with the masked encodings $Z^n$ are passed into the decoder $D$ to give the source estimation $\hat{s}^n$.
 
-$Z^n = \left[\mathbf{0} \oplus \ldots \oplus E^{n}(x)  \oplus \ldots \oplus \mathbf{0} \right]$
+$$Z^n = \left[\mathbf{0} \oplus \ldots \oplus E^{n}(x)  \oplus \ldots \oplus \mathbf{0} \right]$$
 
-$\hat{s}^n = D_{\phi}(Z^n)$
+$$\hat{s}^n = D(Z^n)$$
 
 ### 2. Pathway separation loss
-The pathway separation loss is applied along the channel dimension for each layer's weight in the decoder (except the output layer) to encourage sparse mixing of the encodings and their mappings throughout the decoder. This is done by partitioning the weights into a set of blocks that have input dimensionality matching the individual encoder outputs, and then decaying the off-diagonal blocks (parameters responsible for mixing the encodings) towards zero. See [models/separation_loss.py](models/separation_loss.py) for our two proposed approaches to the pathway separation loss.
+The pathway separation loss is applied along the channel dimension for each layer's weight $W$ in the decoder (except the output layer) to encourage sparse mixing of the encodings and their mappings throughout the decoder. This is done by partitioning the weights into a set of blocks $B_{i,j} \in \mathbf{B}$ that decode individual encoding spaces and then by decaying the off-diagonal blocks (parameters responsible for mixing encodings) towards zero. See [models/separation_loss.py](models/separation_loss.py) for our two proposed approaches to the pathway separation loss.
 <p align="center">
   <img src="assets/ecg_w.png" alt="drawing" width="90%" height="90%"/>
     <p align="center">
       Figure 2. The final decoder weights of the multi-encoder autoencoder model trained on the ECG data are visualized above. The absolute values of the weights are summed along the spatial dimensions to show the effect of the pathway separation loss.
-  </p>
+    </p>
 </p>
 
-The term "pathway" comes from the fact that as the off-diagonal blocks decay towards zero, the on-diagonal blocks create a pathway from layer to layer in the decoder where little mixing of the encoding spaces occurs i.e. each encoding gets a path dense connections through the decoder.
-### 3. Zero reconstruction loss
+The term "pathway" comes from the fact that as the off-diagonal blocks decay towards zero, the on-diagonal blocks create a pathway from layer to layer in the decoder where little mixing of the encoding spaces occurs i.e. each encoding gets its own separate set of densely connected blocks through the decoder.
 
+### 3. Zero reconstruction loss
+The zero reconstruction loss is proposed to ensure that masked source encodings have minimal contribution to the final source estimation. For the zero reconstruction loss, an all-zero encoding vector $Z_{\text{zero}}$ is passed into the decoder, and the loss between the reconstruction $\hat{x}_{\text{zero}}$ and the target $x_{\text{zero}}$, an all-zero vector equal to the output size, is minimized.
+
+$$\mathcal{L}_{\text{zero recon.}} = \text{BCE}(x_{\text{zero}}, D_{\phi}(Z_{\text{zero}}))$$
 
 ## Experiments
 ### Triangles & Circles
@@ -54,11 +57,17 @@ The _triangles & circles_ dataset consists of non-linear mixtures of triangle an
 
 <p align="center">
     <img src="assets/training_demo.gif" alt="drawing" width="35%" height="35%"/>
+    <p align="center">
+      Figure 3.
+    </p>
 </p>
 
 #### 3. Example blind source separation result samples
 <p align="center">
     <img src="assets/tri_circ_1.png" alt="drawing" width="40%" height="40%"/> &nbsp; <img src="assets/tri_circ_2.png" alt="drawing" width="40%" height="40%"/>
+    <p align="center">
+      Figure 4. Even though there are two sources in the mixtures, we choose three encoders to show that the number of sources can be overestimated as the proposed methodology will converge on a solution where only two of the encoders are responsible for seperating the triangles and circles.
+    </p>
 </p>
 
 
@@ -78,6 +87,9 @@ python trainer.py experiment_config=mesa_ppg_bss
 </p>
 <p align="center">
     <img src="assets/ecg.png" alt="drawing" width="65%" height="65%"/>
+</p>
+<p align="center">
+      Figure 5.
 </p>
 
 We evaluate our methodology by extracting respiratory rate from the estimated source (manually reviewed to correspond with respiration) and comparing it the extracted respiratory rate of a simultaneously measured reference respiratory signal, nasal pressure or thoracic excursion.
