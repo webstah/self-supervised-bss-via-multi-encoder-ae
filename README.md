@@ -64,10 +64,10 @@ We evaluate our methodology by extracting respiratory rate from the estimated so
 | Method (Input)      | Breaths/Min. MAE $\downarrow$| Breaths/Min. MAE $\downarrow$| Method (Input)                  | Breaths/Min. MAE $\downarrow$ | Breaths/Min. MAE $\downarrow$ |
 |---------------------|------------------------------|------------------------------|---------------------------------|-------------------------------|-------------------------------|
 | **BSS**             | **Nasal Pressure**           | **Thoracic Excursion**       | **Heuristic**                   | **Nasal Pressure**            | **Thoracic Excursion**        |
-| Ours (PPG)          | 1.51                         | 1.50                         | (Muniyandi & Soni, 2017) (ECG)  | 2.38                          | 2.04                          |
-| Ours (ECG)          | 1.73                         | 1.59                         | (Charlton et al., 2016) (ECG)   | 2.38                          | 2.05                          |
-|                     |                              |                              | (van Gent et al., 2019) (ECG)   | 2.27                          | 1.95                          |
-|                     |                              |                              | (Sarkar, 2015) (ECG)            | 2.26                          | 1.94                          |
+| Ours (PPG)          | 1.51                         | 1.50                         | Muniyandi & Soni, 2017[^4] (ECG)  | 2.38                          | 2.04                          |
+| Ours (ECG)          | 1.73                         | 1.59                         | Charlton et al., 2016[^5] (ECG)   | 2.38                          | 2.05                          |
+|                     |                              |                              | van Gent et al., 2019[^6] (ECG)   | 2.27                          | 1.95                          |
+|                     |                              |                              | Sarkar, 2015[^7] (ECG)            | 2.26                          | 1.94                          |
 
 | Method (Input)      | Breaths/Min. MAE $\downarrow$| Breaths/Min. MAE $\downarrow$| Method (Input)                  | Breaths/Min. MAE $\downarrow$ | Breaths/Min. MAE $\downarrow$ |
 |---------------------|------------------------------|------------------------------|---------------------------------|-------------------------------|-------------------------------|
@@ -96,3 +96,7 @@ The Multi-Ethnic Study of Atherosclerosis (MESA) Sleep Ancillary study was funde
 [^1]: Zhang GQ, Cui L, Mueller R, Tao S, Kim M, Rueschman M, Mariani S, Mobley D, Redline S. The National Sleep Research Resource: towards a sleep data commons. J Am Med Inform Assoc. 2018 Oct 1;25(10):1351-1358. doi: 10.1093/jamia/ocy064. PMID: 29860441; PMCID: PMC6188513.
 [^2]: Chen X, Wang R, Zee P, Lutsey PL, Javaheri S, Alcántara C, Jackson CL, Williams MA, Redline S. Racial/Ethnic Differences in Sleep Disturbances: The Multi-Ethnic Study of Atherosclerosis (MESA). Sleep. 2015 Jun 1;38(6):877-88. doi: 10.5665/sleep.4732. PMID: 25409106; PMCID: PMC4434554.
 [^3]: Makowski, D., Pham, T., Lau, Z.J. et al. NeuroKit2: A Python toolbox for neurophysiological signal processing. Behav Res 53, 1689–1696 (2021). https://doi.org/10.3758/s13428-020-01516-y
+[^4]: M. Muniyandi, R. Soni, Breath rate variability (brv) - a novel measure to study the meditation effects, International Journal of Yoga Accepted (01 2017). doi:10.4103/ijoy.IJOY_27_17.
+[^5]: P. H. Charlton, T. Bonnici, L. Tarassenko, D. A. Clifton, R. Beale, P. J. Watkinson, An assessment of algorithms to estimate respiratory rate from the electrocardiogram and photoplethysmogram Physiological Measurement 37 (4), (2016) 610. doi:10.1088/0967-3334/37/4/610. https://dx.doi.org/10.1088/0967-3334/37/4/610
+[^6]: P. van Gent, H. Farah, N. van Nes, B. van Arem, Heartpy: A novel heart rate algorithm for the analysis of noisy signals, Transportation Research Part F: Traffic Psychology and Behaviour 66 (2019) 368–378. doi: https://doi.org/10.1016/j.trf.2019.09.015. https://www.sciencedirect.com/science/article/pii/S1369847818306740
+[^7]: S. Sarkar, Extraction of respiration signal from ecg for respiratory rate estimation, IET Conference Proceedings (2015) 58 (5 .)–58 (5 .)(1). https://digital-library.theiet.org/content/conferences/10.1049/cp.2015.1654
