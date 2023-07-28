@@ -23,9 +23,9 @@ We propose a novel methodology for addressing blind source separation of non-lin
 ## Method & Key Contributions
 As the foundation of our proposed methodology, we use multi-encoder autoencoders such that each encoder recieves the same input, and the outputs of each encoder are concatenated along the channel dimension before being propagated thorugh the single decoder network. In addition, we propose two novel regularization methods and a novel encoding masking technique for inference. These three contributions are outlined below...
 ### 1. Enoding masking for blind source estimation
-To estimate a source (i.e. seperate a source) with a trained model the $n\text{th}$ encoder $E^{n}$ left active while all other encodings are masked out with zero vectors $\bm{0}$. The concatenation of the active encoding with the masked encodings $Z^n$ are passed into the decoder to give the source estimation $\hat{s}^n$.
+To estimate a source (i.e. seperate a source) with a trained model the $n\text{th}$ encoder $E^{n}$ left active while all other encodings are masked out with zero vectors $\mathbf{0}$. The concatenation of the active encoding with the masked encodings $Z^n$ are passed into the decoder to give the source estimation $\hat{s}^n$.
 
-$Z^n = \left[\bm{0} \oplus \ldots \oplus E^{n}(x)  \oplus \ldots \oplus \bm{0} \right]$
+$Z^n = \left[\mathbf{0} \oplus \ldots \oplus E^{n}(x)  \oplus \ldots \oplus \mathbf{0} \right]$
 
 $\hat{s}^n = D_{\phi}(Z^n)$
 
