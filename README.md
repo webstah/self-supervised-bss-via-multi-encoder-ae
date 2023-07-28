@@ -1,5 +1,5 @@
 
-<img align="Center" width="128" src="assets/ICON.png" alt="Icon">
+<img align="Center" width="128" src="assets/ICON.png" alt="Icon"> 
 
 # Self-Supervised Blind Source Separation via Multi-Encoder Autoencoders
 
@@ -108,7 +108,6 @@ We evaluate our methodology by extracting respiratory rate from the estimated so
 | AE (PPG)            | 0.46                         | 2.07                         | Thoracic Excursion              | 1.33                          | --                            |
 | AE (ECG)            | 0.48                         | 2.16                         |                                 |                               |                               |
 
-
 ### Cite our work
 Our work, 'Self-Supervised Blind Source Separation via Multi-Encoder Autoencoders', is currently under review. If you find this repository helpful, please cite us.
 ```
@@ -121,6 +120,8 @@ Our work, 'Self-Supervised Blind Source Separation via Multi-Encoder Autoencoder
   howpublished = {\url{https://github.com/webstah/self-supervised-bss-via-mult-encoder-ae}},
 }
 ```
+
+<a href="https://github.com/webstah"><img src="https://github.com/webstah.png" width="60px;"/></a> <a href="https://github.com/Mellowing-Factory"><img src="https://github.com/Mellowing-Factory.png" width="60px;"/></a> 
 
 ### Acknowledgments
 The Multi-Ethnic Study of Atherosclerosis (MESA) Sleep Ancillary study was funded by NIH-NHLBI Association of Sleep Disorders with Cardiovascular Health Across Ethnic Groups (RO1 HL098433). MESA is supported by NHLBI funded contracts HHSN268201500003I, N01-HC-95159, N01-HC-95160, N01-HC-95161, N01-HC-95162, N01-HC-95163, N01-HC-95164, N01-HC-95165, N01-HC-95166, N01-HC-95167, N01-HC-95168 and N01-HC-95169 from the National Heart, Lung, and Blood Institute, and by cooperative agreements UL1-TR-000040, UL1-TR-001079, and UL1-TR-001420 funded by NCATS. The National Sleep Research Resource was supported by the National Heart, Lung, and Blood Institute (R24 HL114473, 75N92019R002).
