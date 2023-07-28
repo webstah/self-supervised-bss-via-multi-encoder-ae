@@ -5,7 +5,7 @@
 
 **Paper link (pdf):** _coming soon, undergoing peer review_
 
-## Methodology Overview
+## Summary
 We propose a novel methodology for addressing blind source separation of non-linear mixtures via multi-encoder single-decoder autoencoders with fully self-supervised learning. During training, our methodology unmixes the input into the multiple encoder output spaces and then remixes these representations within the single decoder for a simple reconstruction of the input. Then to perform source inference we introduce a novel _encoding masking_ technique whereby masking out all but one of the encodings enables the decoder to estimate a source signal. To achieve consistent source separation, we also introduce a so-called **pathway separation loss** for the decoder that encourages sparsity between the unmixed encoding spaces throughout and a so-called **zero reconstruction loss** on the decoder that assists with coherent source estimations. We conduct experiments on a toy dataset, the _triangles & circles_ dataset, and with real-world biosignal recordings from a polysomnography sleep study for extracting respiration.
 <p align="center">
     <img src="assets/bss_graph_1.png" alt="drawing" width="50%" height="50%"/>
@@ -16,23 +16,31 @@ We propose a novel methodology for addressing blind source separation of non-lin
 <p align="center">
     <img src="assets/bss_graph_2.png" alt="drawing" width="50%" height="50%"/>
     <p align="center">
-      a. Inference procedure (source estimation).
+      b. Inference procedure (source estimation).
   </p>
 </p>
 
-### 1. Pathway separation loss
+## Method & Key Contributions
+As the foundation of our proposed methodology, we use multi-encoder autoencoders such that each encoder recieves the same input, and the outputs of each encoder are concatenated along the channel dimension before being propagated thorugh the single decoder network. In addition, we propose two novel regularization methods and a novel encoding masking technique for inference. These three contributions are outlined below...
+### 1. Enoding masking for blind source estimation
+To estimate a source (i.e. seperate a source) with a trained model the $n\text{th}$ encoder $E^{n}_{\theta_{n}}$ left active while all other encodings are masked out with zero vectors $\bm{0}$. The concatenation of the active encoding with the masked encodings $Z^n$ are passed into the decoder to give the source estimation $\hat{s}^n$.
 
-### 2. Zero reconstruction loss
+$Z^n = \left[\bm{0} \oplus \ldots \oplus E^{n}_{\theta_{n}}(x)  \oplus \ldots \oplus \bm{0} \right]$
 
-### 3. Enoding masking for blind source estimation
+$\hat{s}^n = D_{\phi}(Z^n)$
+
+### 2. Pathway separation loss
+The pathway separation loss is applied to the weights each layer in the decoder (except the output layer) to encourage sparse mixing of the encodings and their mappings throughout the decoder. This is done by partitioning the weights into a set of blocks that have input dimensionality matching the individual encoder outputs, and then decaying the off-diagonal blocks (parameters responsible for mixing the encodings) towards zero. See [models/separation_loss.py](models/separation_loss.py) for our two proposed approaches to the pathway separation loss. The term "pathway" comes from the fact that as the off-diagonal blocks decay towards zero, the on-diagonal blocks create a pathway from layer to layer in the decoder where little mixing of the encoding spaces occurs.
+### 3. Zero reconstruction loss
 
 
 ## Experiments
 ### Triangles & Circles
 #### 1. Getting Started with the _triangles & circles_ dataset
-1. To generate your own dataset please see: [notebooks/triangles_and_circles_dataset.ipynb](notebooks/triangles_and_circles_dataset.ipynb)
-2. To train a model with our configuration use the following command: `python trainer.py experiment_config=tri_and_circ_bss`
-3. Lastly, to test your model please see: [notebooks/triangles_and_circles_test_model.ipynb](notebooks/triangles_and_circles_test_model.ipynb)
+The _triangles & circles_ dataset consists of non-linear mixtures of triangle and circle shapes with uniform random position in size and position. To generate your own dataset please see: [notebooks/triangles_and_circles_dataset.ipynb](notebooks/triangles_and_circles_dataset.ipynb)
+
+- To train a model with our configuration use the following command: `python trainer.py experiment_config=tri_and_circ_bss`
+- To test your model please see: [notebooks/triangles_and_circles_test_model.ipynb](notebooks/triangles_and_circles_test_model.ipynb)
 
 #### 2. Training demo
 
