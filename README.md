@@ -21,7 +21,7 @@ We propose a novel method for addressing blind source separation of non-linear m
 </p>
 
 ## Method & Key Contributions
-As the foundation of our proposed method, we use multi-encoder autoencoders such that each encoder recieves the same input, and the outputs of each encoder are concatenated along the channel dimension before being propagated through the single decoder network. In addition, we propose two novel regularization methods and a novel encoding masking technique for inference. These three contributions are outlined below...
+As the foundation of our proposed method, we use multi-encoder autoencoders such that each encoder recieves the same input, and the outputs of each encoder are concatenated along the channel dimension before being propagated through the single decoder network. During the training phase, a reconstruction loss between the input and output is applied in the typical autoencoder fashion. In addition, we propose two novel regularization methods and a novel encoding masking technique for inference. These three contributions are outlined below...
 ### 1. Enoding masking for blind source estimation
 To estimate a source (i.e. seperate a source) with a trained model the $n\text{th}$ encoder $E^{n}$ left active while all other encodings are masked out with zero vectors $\mathbf{0}$. The concatenation of the active encoding with the masked encodings $Z^n$ are passed into the decoder $D$ to give the source estimation $\hat{s}^n$.
 
