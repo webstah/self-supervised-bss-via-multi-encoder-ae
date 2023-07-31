@@ -62,7 +62,7 @@ The _triangles & circles_ dataset consists of non-linear mixtures of triangle an
     </p>
 </p>
 
-#### 3. Example blind source separation result samples
+#### 3. Example blind source separation results
 <p align="center">
     <img src="assets/tri_circ_1.png" alt="drawing" width="40%" height="40%"/> &nbsp; <img src="assets/tri_circ_2.png" alt="drawing" width="40%" height="40%"/>
     <p align="center">
