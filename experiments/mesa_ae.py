@@ -47,7 +47,6 @@ class Experiment(pl.LightningModule):
         self.log(f'recon_loss/train', loss, on_step=True, 
                                     on_epoch=True, prog_bar=True)
         
-        # TODO: log cosine alignment
         self.log(f'resp_cos_sim/train', torch.mean(self.cosine_sim(torch.sigmoid(x_pred.detach()), y)), on_step=True, 
                                             on_epoch=True, prog_bar=True)
                 
