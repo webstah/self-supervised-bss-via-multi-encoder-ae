@@ -111,7 +111,7 @@ We evaluate our method by extracting respiratory rate from the estimated source 
 ### Cite our work
 Our work, _Self-Supervised Blind Source Separation via Multi-Encoder Autoencoders_, is currently under review. If you find this repository helpful, please cite us.
 ```
-@software{webster2023,
+@software{bss-meae-webster2023,
   author = {Webster, M.B. and Lee Joonnyong},
   title = {Self-Supervised Blind Source Separation via Multi-Encoder Autoencoders},
   year = {2023},
