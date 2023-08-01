@@ -124,6 +124,8 @@ Our work, _Self-Supervised Blind Source Separation via Multi-Encoder Autoencoder
 <a href="https://github.com/webstah"><img src="https://github.com/webstah.png" width="60px;"/></a> <a href="https://github.com/Mellowing-Factory"><img src="https://github.com/Mellowing-Factory.png" width="60px;"/></a> 
 
 ### Acknowledgments
+This work was supported by the Technology Development Program (S3201499) funded by the Ministry of SMEs and Startups (MSS, Korea).
+
 The Multi-Ethnic Study of Atherosclerosis (MESA) Sleep Ancillary study was funded by NIH-NHLBI Association of Sleep Disorders with Cardiovascular Health Across Ethnic Groups (RO1 HL098433). MESA is supported by NHLBI funded contracts HHSN268201500003I, N01-HC-95159, N01-HC-95160, N01-HC-95161, N01-HC-95162, N01-HC-95163, N01-HC-95164, N01-HC-95165, N01-HC-95166, N01-HC-95167, N01-HC-95168 and N01-HC-95169 from the National Heart, Lung, and Blood Institute, and by cooperative agreements UL1-TR-000040, UL1-TR-001079, and UL1-TR-001420 funded by NCATS. The National Sleep Research Resource was supported by the National Heart, Lung, and Blood Institute (R24 HL114473, 75N92019R002).
 
 ### References
