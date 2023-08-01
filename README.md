@@ -8,13 +8,13 @@
 ## Summary
 We propose a novel method for addressing blind source separation of non-linear mixtures via multi-encoder single-decoder autoencoders with fully self-supervised learning. During training, our method unmixes the input into the multiple encoder output spaces and then remixes these representations within the single decoder for a simple reconstruction of the input. Then to perform source inference we introduce a novel _encoding masking_ technique whereby masking out all but one of the encodings enables the decoder to estimate a source signal. To achieve consistent source separation, we also introduce a so-called **pathway separation loss** for the decoder that encourages sparsity between the unmixed encoding spaces throughout and a so-called **zero reconstruction loss** on the decoder that assists with coherent source estimations. We conduct experiments on a toy dataset, the _triangles & circles_ dataset, and with real-world biosignal recordings from a polysomnography sleep study for extracting respiration.
 <p align="center">
-    <img src="assets/bss_graph_1.png" alt="drawing" width="50%" height="50%"/>
+    <img src="assets/bss_graph_1.png" alt="drawing" width="60%" height="60%"/>
   <p align="center">
       Figure 1a. Training procedure.
   </p>
 </p>
 <p align="center">
-    <img src="assets/bss_graph_2.png" alt="drawing" width="50%" height="50%"/>
+    <img src="assets/bss_graph_2.png" alt="drawing" width="60%" height="60%"/>
     <p align="center">
       Figure 1b. Inference procedure (source estimation).
   </p>
@@ -56,7 +56,7 @@ The _triangles & circles_ dataset consists of non-linear mixtures of triangle an
 #### 2. Training demo
 
 <p align="center">
-    <img src="assets/training_demo.gif" alt="drawing" width="35%" height="35%"/>
+    <img src="assets/training_demo.gif" alt="drawing" width="45%" height="5%"/>
     <p align="center">
       Figure 3.
     </p>
@@ -64,7 +64,7 @@ The _triangles & circles_ dataset consists of non-linear mixtures of triangle an
 
 #### 3. Example blind source separation results
 <p align="center">
-    <img src="assets/tri_circ_1.png" alt="drawing" width="40%" height="40%"/> &nbsp; <img src="assets/tri_circ_2.png" alt="drawing" width="40%" height="40%"/>
+    <img src="assets/tri_circ_1.png" alt="drawing" width="45%" height="45%"/> &nbsp; <img src="assets/tri_circ_2.png" alt="drawing" width="45%" height="45%"/>
     <p align="center">
       Figure 4. Even though there are two sources in the mixtures, we choose three encoders to show that the number of sources can be overestimated as the proposed method will converge on a solution where only two of the encoders are responsible for seperating the triangles and circles.
     </p>
@@ -83,10 +83,10 @@ python trainer.py experiment_config=mesa_ppg_bss
 
 #### 2. Results
 <p align="center">
-    <img src="assets/ppg.png" alt="drawing" width="65%" height="65%"/>
+    <img src="assets/ppg.png" alt="drawing" width="75%" height="75%"/>
 </p>
 <p align="center">
-    <img src="assets/ecg.png" alt="drawing" width="65%" height="65%"/>
+    <img src="assets/ecg.png" alt="drawing" width="75%" height="75%"/>
 </p>
 <p align="center">
       Figure 5.
