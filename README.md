@@ -64,7 +64,7 @@ The _triangles & circles_ dataset consists of non-linear mixtures of triangle an
 
 #### 3. Example blind source separation results
 <p align="center">
-    <img src="assets/tri_circ_1.png" alt="drawing" width="47.5%" height="47.5%"/> &nbsp; <img src="assets/tri_circ_2.png" alt="drawing" width="47.5%" height="47.5%"/>
+    <img src="assets/tri_circ_1.png" alt="drawing" width="47.5%" height="47.5%"/> <img src="assets/tri_circ_2.png" alt="drawing" width="47.5%" height="47.5%"/>
     <p align="center">
       Figure 4. Even though there are two sources in the mixtures, we choose three encoders to show that the number of sources can be overestimated as the proposed method will converge on a solution where only two of the encoders are responsible for seperating the triangles and circles.
     </p>
