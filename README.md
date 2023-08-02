@@ -1,5 +1,5 @@
 
-<img align="Center" width="128" src="assets/ICON.png" alt="Icon"> 
+<img align="Center" width="100" src="assets/ICON.png" alt="Icon"> 
 
 # Self-Supervised Blind Source Separation via Multi-Encoder Autoencoders
 
