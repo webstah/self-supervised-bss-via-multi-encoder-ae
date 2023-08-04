@@ -48,10 +48,10 @@ $$\mathcal{L}_ {\text{zero recon.}} = \text{BCE}(x_ {\text{zero}}, D_ {\phi}(Z_ 
 ## Experiments
 ### Triangles & Circles
 #### 1. Getting Started with the _triangles & circles_ dataset
-The _triangles & circles_ dataset consists of non-linear mixtures of triangle and circle shapes with uniform random position in size and position. To generate your own dataset please see: [notebooks/triangles_and_circles_dataset.ipynb](notebooks/triangles_and_circles_dataset.ipynb)
+The _triangles & circles_ dataset consists of non-linear mixtures of triangle and circle shapes with uniform random position in size and position. To generate your own dataset please see: [notebooks/triangles_and_circles_dataset.ipynb](./notebooks/triangles_and_circles_dataset.ipynb)
 
 - To train a model with our configuration use the following command: `python trainer.py experiment_config=tri_and_circ_bss`
-- To test your model please see: [notebooks/triangles_and_circles_test_model.ipynb](notebooks/triangles_and_circles_test_model.ipynb)
+- To test your model please see: [notebooks/triangles_and_circles_test_model.ipynb](./notebooks/triangles_and_circles_test_model.ipynb)
 
 #### 2. Training demo
 
@@ -73,9 +73,9 @@ The _triangles & circles_ dataset consists of non-linear mixtures of triangle an
 
 ### ECG & PPG Respiratory Source Extraction
 #### 1. Reproducing our results on ECG & PPG data from the MESA dataset
-You can request access to the Multi-Ethnic Study of Atherosclerosis (MESA) Sleep study[^1][^2] data [here](https://sleepdata.org/datasets/mesa). After downloading the dataset, use the [PyEDFlib](https://pyedflib.readthedocs.io/en/latest/) library to extract the ECG, PPG, thoracic excursion, and nasal pressure signals from each recording. We then randomly choose 1,000 recordings for our training(and validation) and testing splits (45%, 5%, and 50% respectively). Then for each data split we extract segments (each segment with the four simultaneously measured biosignals of interest) with length 12288 as NumPy arrays, resampling each signal to 200hz. At this point you may use a library for removing bad samples such as the [NeuroKit2](https://neuropsychology.github.io/NeuroKit/index.html) library[^3]. We then pickle a list of our segments for ECG and for PPG for both training and testing splits. This file can then be passed to our dataloader (see [utils/dataloader/mesa.py](utils/dataloader/mesa.py)) via a setting in the config files. *We do not provide this processing code as it is specific to our NAS and compute configuration.*
+You can request access to the Multi-Ethnic Study of Atherosclerosis (MESA) Sleep study[^1][^2] data [here](https://sleepdata.org/datasets/mesa). After downloading the dataset, use the [PyEDFlib](https://pyedflib.readthedocs.io/en/latest/) library to extract the ECG, PPG, thoracic excursion, and nasal pressure signals from each recording. We then randomly choose 1,000 recordings for our training(and validation) and testing splits (45%, 5%, and 50% respectively). Then for each data split we extract segments (each segment with the four simultaneously measured biosignals of interest) with length 12288 as NumPy arrays, resampling each signal to 200hz. At this point you may use a library for removing bad samples such as the [NeuroKit2](https://neuropsychology.github.io/NeuroKit/index.html) library[^3]. We then pickle a list of our segments for ECG and for PPG for both training and testing splits. This file can then be passed to our dataloader (see [utils/dataloader/mesa.py](./utils/dataloader/mesa.py)) via a setting in the config files. *We do not provide this processing code as it is specific to our NAS and compute configuration.*
 
-After the data processing is complete and the configuration files updated with the proper data path (see [config/experiment_config/](config/experiment_config/)), you can train a model for the ECG or PPG experiments with the following commands: 
+After the data processing is complete and the configuration files updated with the proper data path (see [config/experiment_config/](./config/experiment_config/)), you can train a model for the ECG or PPG experiments with the following commands: 
 ```
 python trainer.py experiment_config=mesa_ecg_bss
 python trainer.py experiment_config=mesa_ppg_bss
