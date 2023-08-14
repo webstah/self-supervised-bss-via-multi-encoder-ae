@@ -21,9 +21,9 @@ We propose a novel method for addressing blind source separation of non-linear m
 </p>
 
 ## Method & Key Contributions
-As the foundation of our proposed method, we use multi-encoder autoencoders such that each encoder recieves the same input, and the outputs of each encoder are concatenated along the channel dimension before being propagated through the single decoder network. During the training phase, a reconstruction loss between the input and output is applied in the typical autoencoder fashion. In addition, we propose two novel regularization methods and a novel encoding masking technique for inference. These three contributions are outlined below...
+As the foundation of our proposed method, we use multi-encoder autoencoders such that each encoder receives the same input, and the outputs of each encoder are concatenated along the channel dimension before being propagated through the single decoder network. During the training phase, a reconstruction loss between the input and output is applied in the typical autoencoder fashion. In addition, we propose two novel regularization methods and a novel encoding masking technique for inference. These three contributions are outlined below...
 ### 1. Enoding masking for blind source estimation
-To estimate a source (i.e. seperate a source) with a trained model the $n\text{th}$ encoder $E^{n}$ left active while all other encodings are masked out with zero vectors $\mathbf{0}$. The concatenation of the active encoding with the masked encodings $Z^n$ are passed into the decoder $D$ to give the source estimation $\hat{s}^n$.
+To estimate a source (i.e. seperate a source) with a trained model the $n\text{th}$ encoder $E^{n}$ is left active while all other encodings are masked out with zero vectors $\mathbf{0}$. The concatenation of the active encoding with the masked encodings $Z^n$ is passed into the decoder $D$ to give the source estimation $\hat{s}^n$.
 
 $$Z^n = \left[\mathbf{0} \oplus \ldots \oplus E^{n}(x)  \oplus \ldots \oplus \mathbf{0} \right]$$
 
@@ -66,16 +66,16 @@ The _triangles & circles_ dataset consists of non-linear mixtures of triangle an
 <p align="center">
     <img src="assets/tri_circ_1.png" alt="drawing" width="47.5%" height="47.5%"/> <img src="assets/tri_circ_2.png" alt="drawing" width="47.5%" height="47.5%"/>
     <p align="center">
-      Figure 4. Even though there are two sources in the mixtures, we choose three encoders to show that the number of sources can be overestimated as the proposed method will converge on a solution where only two of the encoders are responsible for seperating the triangles and circles.
+      Figure 4. Even though there are two sources in the mixtures, we choose three encoders to show that the number of sources can be overestimated as the proposed method will converge on a solution where only two of the encoders are responsible for separating the triangles and circles.
     </p>
 </p>
 
 
 ### ECG & PPG Respiratory Source Extraction
 #### 1. Reproducing our results on ECG & PPG data from the MESA dataset
-You can request access to the Multi-Ethnic Study of Atherosclerosis (MESA) Sleep study[^1][^2] data [here](https://sleepdata.org/datasets/mesa). After downloading the dataset, use the [PyEDFlib](https://pyedflib.readthedocs.io/en/latest/) library to extract the ECG, PPG, thoracic excursion, and nasal pressure signals from each recording. We then randomly choose 1,000 recordings for our training(and validation) and testing splits (45%, 5%, and 50% respectively). Then for each data split we extract segments (each segment with the four simultaneously measured biosignals of interest) with length 12288 as NumPy arrays, resampling each signal to 200hz. At this point you may use a library for removing bad samples such as the [NeuroKit2](https://neuropsychology.github.io/NeuroKit/index.html) library[^3]. We then pickle a list of our segments for ECG and for PPG for both training and testing splits. This file can then be passed to our dataloader (see [utils/dataloader/mesa.py](utils/dataloader/mesa.py)) via a setting in the config files. *We do not provide this processing code as it is specific to our NAS and compute configuration.*
+You can request access to the Multi-Ethnic Study of Atherosclerosis (MESA) Sleep study[^1][^2] data [here](https://sleepdata.org/datasets/mesa). After downloading the dataset, use the [PyEDFlib](https://pyedflib.readthedocs.io/en/latest/) library to extract the ECG, PPG, thoracic excursion, and nasal pressure signals from each recording. We then randomly choose 1,000 recordings for our training(and validation) and testing splits (45%, 5%, and 50% respectively). Then for each data split we extract segments (each segment with the four simultaneously measured biosignals of interest) with length 12288 as NumPy arrays, resampling each signal to 200hz. At this point, you may use a library for removing bad samples such as the [NeuroKit2](https://neuropsychology.github.io/NeuroKit/index.html) library[^3]. We then pickle a list of our segments for ECG and for PPG for both training and testing splits. This file can then be passed to our dataloader (see [utils/dataloader/mesa.py](utils/dataloader/mesa.py)) via a setting in the config files. *We do not provide this processing code as it is specific to our NAS and compute configuration.*
 
-After the data processing is complete and the configuration files updated with the proper data path (see [config/experiment_config/](config/experiment_config/)), you can train a model for the ECG or PPG experiments with the following commands: 
+After the data processing is complete and the configuration files are updated with the proper data path (see [config/experiment_config/](config/experiment_config/)), you can train a model for the ECG or PPG experiments with the following commands: 
 ```
 python trainer.py experiment_config=mesa_ecg_bss
 python trainer.py experiment_config=mesa_ppg_bss
@@ -92,7 +92,7 @@ python trainer.py experiment_config=mesa_ppg_bss
       Figure 5.
 </p>
 
-We evaluate our method by extracting respiratory rate from the estimated source (manually reviewed to correspond with respiration) and comparing it the extracted respiratory rate of a simultaneously measured reference respiratory signal, nasal pressure or thoracic excursion.
+We evaluate our method by extracting respiratory rate from the estimated source (manually reviewed to correspond with respiration) and comparing it to the extracted respiratory rate of a simultaneously measured reference respiratory signal, nasal pressure, or thoracic excursion.
 
 | Method (Input)      | Breaths/Min. MAE $\downarrow$| Breaths/Min. MAE $\downarrow$| Method (Input)                  | Breaths/Min. MAE $\downarrow$ | Breaths/Min. MAE $\downarrow$ |
 |---------------------|------------------------------|------------------------------|---------------------------------|-------------------------------|-------------------------------|
