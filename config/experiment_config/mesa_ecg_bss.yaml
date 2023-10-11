@@ -29,7 +29,7 @@ batch_size: 256
 dataloader: [utils.dataloader.mesa, DataModule]
 data_path: data/mesa_ecg/
 num_workers: 4
-input_length: 4096
+input_length: 12288
 input_padding: 0
 input_channels: 1
 input_signal_type: ECG
