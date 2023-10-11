@@ -16,7 +16,7 @@ zero_lr: 1e-2
 use_weight_norm: true
 
 # model parameters
-channels: [32, 64, 64, 128, 128, 256, 256]
+channels: [32, 32, 64, 64, 128, 128, 256, 256]
 num_encoders: 8
 hidden: 64
 norm_type: group_norm
