@@ -51,7 +51,7 @@ $$\mathcal{L}_ {\text{zero recon.}} = \text{BCE}(x_ {\text{zero}}, D_ {\phi}(Z_ 
 The _triangles & circles_ dataset consists of non-linear mixtures of triangle and circle shapes with uniform random position in size and position. To generate your own dataset please see: [notebooks/triangles_and_circles_dataset.ipynb](notebooks/triangles_and_circles_dataset.ipynb)
 
 - To train a model with our configuration use the following command: `python trainer.py experiment_config=tri_and_circ_bss`
-- To test your model please see: [notebooks/triangles_and_circles_test_model.ipynb](notebooks/triangles_and_circles_test_model.ipynb)
+- To test your model please see: [notebooks/triangles_and_circles_model_test.ipynb](notebooks/triangles_and_circles_model_test.ipynb)
 
 #### 2. Training demo
 
