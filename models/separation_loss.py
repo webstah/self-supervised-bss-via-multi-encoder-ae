@@ -26,7 +26,7 @@ class WeightSeparationLoss(nn.Module):
 
 class WeightSeparationLossAlternative(nn.Module):
     def __init__(self, num_splits, mode='L1'):
-        super(WeightSeparationLoss, self).__init__()
+        super(WeightSeparationLossAlternative, self).__init__()
         self.num_splits = num_splits
         self.mode = mode
         assert mode in ['L1', 'L2'], f'Weight separation loss has an invalid argument for the \
