@@ -4,7 +4,7 @@
 **Paper Links:** [arXiv](https://arxiv.org/abs/2309.07138) [[pdf](https://arxiv.org/pdf/2309.07138.pdf)], _This work is currently undergoing peer review._
 
 ## Summary
-We propose a novel method for addressing blind source separation of non-linear mixtures via multi-encoder single-decoder autoencoders with fully self-supervised learning. During training, our method unmixes the input into the multiple encoder output spaces and then remixes these representations within the single decoder for a simple reconstruction of the input. Then to perform source inference we introduce a novel _encoding masking_ technique whereby masking out all but one of the encodings enables the decoder to estimate a source signal. To achieve consistent source separation, we also introduce a so-called **pathway separation loss** for the decoder that encourages sparsity between the unmixed encoding spaces throughout and a so-called **zero reconstruction loss** on the decoder that assists with coherent source estimations. We conduct experiments on a toy dataset, the _triangles & circles_ dataset, and with real-world biosignal recordings from a polysomnography sleep study for extracting respiration.
+We propose a novel method for addressing blind source separation of non-linear mixtures via multi-encoder single-decoder autoencoders with fully self-supervised learning. During training, our method unmixes the input into the multiple encoder output spaces and then remixes these representations within the single decoder for a simple reconstruction of the input. Then to perform source inference we introduce a novel _encoding masking_ technique whereby masking out all but one of the encodings enables the decoder to estimate a source signal. To achieve consistent source separation, we also introduce a so-called **sparse mixing loss** for the decoder that encourages sparsity between the unmixed encoding spaces throughout and a so-called **zero reconstruction loss** on the decoder that assists with coherent source estimations. We conduct experiments on a toy dataset, the _triangles & circles_ dataset, and with real-world biosignal recordings from a polysomnography sleep study for extracting respiration.
 <p align="center">
     <img src="assets/bss_graph_1.png" alt="drawing" width="65%" height="65%"/>
   <p align="center">
@@ -23,20 +23,18 @@ As the foundation of our proposed method, we use multi-encoder autoencoders such
 ### 1. Enoding masking for blind source estimation
 To estimate a source (i.e. separate a source) with a trained model the $n\text{th}$ encoder $E^{n}$ is left active while all other encodings are masked out with zero vectors $\mathbf{0}$. The concatenation of the active encoding with the masked encodings $Z^n$ is passed into the decoder $D$ to give the source estimation $\hat{s}^n$.
 
-$$Z^n = \left[\mathbf{0} \oplus \ldots \oplus E^{n}(x)  \oplus \ldots \oplus \mathbf{0} \right]$$
+$$Z^n = \mathbf{0} \oplus \ldots \oplus E^{n}(x)  \oplus \ldots \oplus \mathbf{0}$$
 
 $$\hat{s}^n = D(Z^n)$$
 
-### 2. Pathway separation loss
-The pathway separation loss is applied along the channel dimension for each layer's weight $W$ in the decoder (except the output layer) to encourage sparse mixing of the encodings and their mappings throughout the decoder. This is done by partitioning the weights into a set of blocks $B_{i,j} \in \mathbf{B}$ that decode individual encoding spaces and then by decaying the off-diagonal blocks (parameters responsible for mixing encodings) towards zero. See [models/separation_loss.py](models/separation_loss.py) for our two proposed approaches to the pathway separation loss.
+### 2. Sparse mixing loss
+The sparse mixing loss is applied with respect to the channel dimension for each layer's weight $W$ in the decoder (except the output layer) to encourage sparse mixing of the encodings and their subsequent mappings throughout the decoder. This is done by partitioning the weights into a grid of blocks $B_{i,j} \in \mathbf{B}$ that decode individual encoding spaces and then by decaying the off-diagonal blocks (parameters responsible for mixing encodings) towards zero. See [models/separation_loss.py](models/separation_loss.py) for our two proposed approaches to the sparse mixing loss.
 <p align="center">
   <img src="assets/ecg_w.png" alt="drawing" width="97.5%" height="97.5%"/>
     <p align="center">
-      Figure 2. The final decoder weights of the multi-encoder autoencoder model trained on the ECG data are visualized above. The absolute values of the weights are summed along the spatial dimensions to show the effect of the pathway separation loss.
+      Figure 2. The final decoder weights of the multi-encoder autoencoder model trained on the ECG data are visualized above. The absolute values of the weights are summed along the spatial dimensions to show the effect of the sparse mixing loss.
     </p>
 </p>
-
-The term "pathway" comes from the fact that as the off-diagonal blocks decay towards zero, the on-diagonal blocks create a pathway from layer to layer in the decoder where little mixing of the encoding spaces occurs i.e. each encoding gets its own separate set of densely connected blocks through the decoder.
 
 ### 3. Zero reconstruction loss
 The zero reconstruction loss is proposed to ensure that masked source encodings have minimal contribution to the final source estimation. For the zero reconstruction loss, an all-zero encoding vector $Z_{\text{zero}}$ is passed into the decoder, and the loss between the reconstruction $\hat{x}_ {\text{zero}}$ and the target $x_ {\text{zero}}$, an all-zero vector equal to the output size, is minimized.
@@ -95,10 +93,10 @@ We evaluate our method by extracting respiratory rate from the estimated source 
 | Method (Input)      | Breaths/Min. MAE $\downarrow$| Breaths/Min. MAE $\downarrow$| Method (Input)                  | Breaths/Min. MAE $\downarrow$ | Breaths/Min. MAE $\downarrow$ |
 |---------------------|------------------------------|------------------------------|---------------------------------|-------------------------------|-------------------------------|
 | **BSS**             | **Nasal Pressure**           | **Thoracic Excursion**       | **Heuristic**                   | **Nasal Pressure**            | **Thoracic Excursion**        |
-| Ours (PPG)          | 1.51                         | 1.50                         | Muniyandi & Soni, 2017[^4] (ECG)  | 2.38                          | 2.04                          |
-| Ours (ECG)          | 1.73                         | 1.59                         | Charlton et al., 2016[^5] (ECG)   | 2.38                          | 2.05                          |
-|                     |                              |                              | van Gent et al., 2019[^6] (ECG)   | 2.27                          | 1.95                          |
-|                     |                              |                              | Sarkar, 2015[^7] (ECG)            | 2.26                          | 1.94                          |
+| Ours (PPG)          | 1.51                         | 1.50                         | Muniyandi & Soni, 2017[^4] (ECG)  | 2.38                          | 2.18                          |
+| Ours (ECG)          | 1.73                         | 1.59                         | Charlton et al., 2016[^5] (ECG)   | 2.38                          | 2.17                          |
+|                     |                              |                              | van Gent et al., 2019[^6] (ECG)   | 2.27                          | 2.05                          |
+|                     |                              |                              | Sarkar, 2015[^7] (ECG)            | 2.26                          | 2.07                          |
 
 | Method (Input)      | Breaths/Min. MAE $\downarrow$| Breaths/Min. MAE $\downarrow$| Method (Input)                  | Breaths/Min. MAE $\downarrow$ | Breaths/Min. MAE $\downarrow$ |
 |---------------------|------------------------------|------------------------------|---------------------------------|-------------------------------|-------------------------------|
@@ -107,7 +105,7 @@ We evaluate our method by extracting respiratory rate from the estimated source 
 | AE (ECG)            | 0.48                         | 2.16                         |                                 |                               |                               |
 
 ### Cite our work
-Our work, _Self-Supervised Blind Source Separation via Multi-Encoder Autoencoders_, is currently under review. If you find this repository helpful, please cite us.
+If you find this repository helpful, please cite us.
 ```
 @misc{webster2023selfsupervised,
       title={Self-Supervised Blind Source Separation via Multi-Encoder Autoencoders}, 
@@ -123,8 +121,6 @@ Our work, _Self-Supervised Blind Source Separation via Multi-Encoder Autoencoder
 
 ### Acknowledgments
 This work was supported by the Technology Development Program (S3201499) funded by the Ministry of SMEs and Startups (MSS, Korea).
-
-The Multi-Ethnic Study of Atherosclerosis (MESA) Sleep Ancillary study was funded by NIH-NHLBI Association of Sleep Disorders with Cardiovascular Health Across Ethnic Groups (RO1 HL098433). MESA is supported by NHLBI funded contracts HHSN268201500003I, N01-HC-95159, N01-HC-95160, N01-HC-95161, N01-HC-95162, N01-HC-95163, N01-HC-95164, N01-HC-95165, N01-HC-95166, N01-HC-95167, N01-HC-95168 and N01-HC-95169 from the National Heart, Lung, and Blood Institute, and by cooperative agreements UL1-TR-000040, UL1-TR-001079, and UL1-TR-001420 funded by NCATS. The National Sleep Research Resource was supported by the National Heart, Lung, and Blood Institute (R24 HL114473, 75N92019R002).
 
 ### References
 [^1]: Zhang GQ, Cui L, Mueller R, Tao S, Kim M, Rueschman M, Mariani S, Mobley D, Redline S. The National Sleep Research Resource: towards a sleep data commons. J Am Med Inform Assoc. 2018 Oct 1;25(10):1351-1358. doi: 10.1093/jamia/ocy064. PMID: 29860441; PMCID: PMC6188513.
