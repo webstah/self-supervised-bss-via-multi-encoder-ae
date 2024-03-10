@@ -88,7 +88,7 @@ python trainer.py experiment_config=mesa_ppg_bss
       Figure 5.
 </p>
 
-We evaluate our method by extracting respiratory rate from the estimated source (manually reviewed to correspond with respiration) and comparing it to the extracted respiratory rate of a simultaneously measured reference respiratory signal, nasal pressure, or thoracic excursion.
+We evaluate our method by extracting respiratory rate from the estimated source (given by the encoder manually reviewed to correspond with respiration) and comparing it to the extracted respiratory rate of a simultaneously measured reference respiratory signal, nasal pressure, or thoracic excursion.
 
 | Method (Input)      | Breaths/Min. MAE $\downarrow$| Breaths/Min. MAE $\downarrow$| Method (Input)                  | Breaths/Min. MAE $\downarrow$ | Breaths/Min. MAE $\downarrow$ |
 |---------------------|------------------------------|------------------------------|---------------------------------|-------------------------------|-------------------------------|
