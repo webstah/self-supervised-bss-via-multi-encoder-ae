@@ -5,16 +5,16 @@ model: [models.cnn_multi_enc_ae_2d, ConvolutionalAutoencoder]
 
 # hyperparameters
 lr: 1e-3
-lr_step_size: 50
-weight_decay: 1e-5
-gradient_clip_val:
+lr_step_size: 150
+weight_decay: 1e-6
+gradient_clip_val: 1.0
 sep_loss: true
-sep_lr: 5e-1
+sep_lr: 1e-2
 sep_norm: L1
 zero_loss: true
 zero_lr: 1e-2
-use_weight_norm: true
-z_decay: 1e-2
+use_weight_norm: false
+z_decay: 5r-4
 
 # model parameters
 channels: [24, 48, 96, 144]
@@ -23,7 +23,7 @@ hidden: 96
 norm_type: group_norm
 
 # training params
-max_epochs: 100
+max_epochs: 300
 batch_size: 256
 
 # data params
