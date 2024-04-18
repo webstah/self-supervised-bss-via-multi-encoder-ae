@@ -17,7 +17,7 @@ use_weight_norm: false
 z_decay: 5r-4
 
 # model parameters
-channels: [24, 48, 96, 144]
+channels: [24, 48, 96, 144] # [24, 48, 96, 144, 192], a slightly deeper network seems to help
 num_encoders: 3
 hidden: 96
 norm_type: group_norm
