@@ -18,7 +18,7 @@ max_epochs: 100
 batch_size: 256
 
 # data params
-dataloader: [utils.dataloader.triangles_circles_final, DataModule]
+dataloader: [utils.dataloader.triangles_circles, DataModule]
 data_path: data/single_channel_nonlinear_mixing_tri_circ.pickle
 num_workers: 4
 input_channels: 1
