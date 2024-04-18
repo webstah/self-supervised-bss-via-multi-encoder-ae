@@ -1,0 +1,29 @@
+name: tri_and_circ_ae
+num_classes:
+experiment: [experiments.triangles_circles_ae, Experiment]
+model: [models.cnn_ae_2d, ConvolutionalAutoencoder]
+
+# hyperparameters
+lr: 1e-3
+lr_step_size: 50
+weight_decay: 1e-6
+gradient_clip_val:
+
+# model parameters
+channels: [24, 48, 96, 144]
+hidden: 96
+
+# training params
+max_epochs: 100
+batch_size: 256
+
+# data params
+dataloader: [utils.dataloader.triangles_circles_final, DataModule]
+data_path: data/single_channel_nonlinear_mixing_tri_circ.pickle
+num_workers: 4
+input_channels: 1
+output_channels: 2
+
+# checkpointing
+monitor: recon_loss/val
+monitor_mode: min
