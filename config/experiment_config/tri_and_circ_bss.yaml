@@ -5,26 +5,26 @@ model: [models.cnn_multi_enc_ae_2d, ConvolutionalAutoencoder]
 
 # hyperparameters
 lr: 1e-3
-lr_step_size: 150
+lr_step_size: 25
 weight_decay: 1e-6
-gradient_clip_val: 1.0
+gradient_clip_val:
 sep_loss: true
-sep_lr: 1e-2
+sep_lr: 5e-1
 sep_norm: L1
 zero_loss: true
 zero_lr: 1e-2
-use_weight_norm: false
-z_decay: 5r-4
+use_weight_norm: true
+z_decay: 1e-2
 
 # model parameters
-channels: [24, 48, 96, 144] # [24, 48, 96, 144, 192], a slightly deeper network seems to help with stability
+channels: [24, 48, 96, 144, 192] # a slightly deeper network seems to help with stability, the original configuration in the paper is [24, 48, 96, 144]
 num_encoders: 3
 hidden: 96
 norm_type: group_norm
 
 # training params
-max_epochs: 300
-batch_size: 256
+max_epochs: 15
+batch_size: 64
 
 # data params
 dataloader: [utils.dataloader.triangles_circles, DataModule]

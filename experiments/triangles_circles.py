@@ -16,7 +16,6 @@ from models.separation_loss import WeightSeparationLoss
 class Experiment(pl.LightningModule):
     def __init__(self, config, x_plot=None):
         super().__init__()
-        self.automatic_optimization = False
         
         self.hidden = config.hidden
         self.num_encoders = config.num_encoders
@@ -56,7 +55,6 @@ class Experiment(pl.LightningModule):
         return pred
 
     def training_step(self, batch, batch_idx):
-        optimizer = self.optimizers()
         
         x, c, t = batch
 
@@ -83,11 +81,6 @@ class Experiment(pl.LightningModule):
             loss = loss + zero_recon_loss*self.zero_lr
             self.log(f'zero_recon_loss/train', zero_recon_loss, on_step=False, 
                                 on_epoch=True, prog_bar=True)
-        
-        optimizer.zero_grad()
-        self.manual_backward(loss)
-        self.clip_gradients(optimizer, gradient_clip_val=None)
-        optimizer.step()
 
         if batch_idx % 50 == 0:
             plot = plot_grid(x, x_pred)
@@ -96,6 +89,8 @@ class Experiment(pl.LightningModule):
         if batch_idx % self.plot_step == 0 and self.save_plots:
             self.save_inference_samples(self.x_plot)
             self.save_weight_visualizations()
+            
+        return loss
 
     
     def validation_step(self, batch, batch_idx):
