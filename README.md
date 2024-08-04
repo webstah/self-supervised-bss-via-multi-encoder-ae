@@ -48,7 +48,7 @@ The _triangles & circles_ dataset consists of non-linear mixtures of triangle an
 
 - To train a model with our configuration use the following command: `python trainer.py experiment_config=tri_and_circ_bss`
 - To test your model please see: [notebooks/triangles_and_circles_model_test.ipynb](notebooks/triangles_and_circles_model_test.ipynb)
-- Please note that the last checkpoint may not be the best model version. Though we have tried to address the issue of stability (as discussed within the text), instabilities during training may still lead to undesirable results at any point during training. We recommend evaluating as many of the checkpoints as possible to find the best one. Within the output folder of a specific run, there is a `plots` folder that contains source prediction plots created at set intervals during training to help aid with this process.
+- The last checkpoint may not be the best model version. Though we have tried to address the issue of stability (as discussed within the text), instabilities during training may still lead to undesirable results at any point during training. We recommend evaluating as many checkpoints as possible to find the best one. Within the output folder of a specific run, there is a `plots` folder that contains source prediction samples created at set intervals during training to help aid with this process.
 
 #### 2. Training demo
 
@@ -89,7 +89,7 @@ python trainer.py experiment_config=mesa_ppg_bss
       Figure 5.
 </p>
 
-We evaluate our method by extracting respiratory rate from the estimated source (given by the encoder manually reviewed to correspond with respiration) and comparing it to the extracted respiratory rate of a simultaneously measured reference respiratory signal, nasal pressure, or thoracic excursion.
+We evaluate our method by extracting the respiratory rate from the estimated source (given by the encoder manually reviewed to correspond with respiration) and comparing it to the extracted respiratory rate of a simultaneously measured reference respiratory signal, nasal pressure, or thoracic excursion.
 
 | Method (Input)      | Breaths/Min. MAE $\downarrow$| Breaths/Min. MAE $\downarrow$| Method (Input)                  | Breaths/Min. MAE $\downarrow$ | Breaths/Min. MAE $\downarrow$ |
 |---------------------|------------------------------|------------------------------|---------------------------------|-------------------------------|-------------------------------|
