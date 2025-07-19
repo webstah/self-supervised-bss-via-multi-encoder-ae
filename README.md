@@ -117,9 +117,6 @@ If you find this repository helpful, please cite us.
       primaryClass={eess.SP}
 }
 ```
-
-<a href="https://github.com/webstah"><img src="https://github.com/webstah.png" width="60px;"/></a> <a href="https://github.com/Mellowing-Factory"><img src="https://github.com/Mellowing-Factory.png" width="60px;"/></a> 
-
 ### Acknowledgments
 This work was supported by the Technology Development Program (S3201499) funded by the Ministry of SMEs and Startups (MSS, Korea).
 
