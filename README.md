@@ -1,7 +1,7 @@
 
 # Blind Source Separation of Single-Channel Mixtures via Multi-Encoder Autoencoders
 
-**Paper Links:** [arXiv](https://arxiv.org/abs/2309.07138) [[pdf](https://arxiv.org/pdf/2309.07138.pdf)]
+**Paper Links:** [Neurocomputing](https://doi.org/10.1016/j.neucom.2025.131008) [arXiv preprint](https://arxiv.org/abs/2309.07138)
 
 ## Summary
 We propose a novel method for addressing blind source separation of non-linear mixtures via multi-encoder single-decoder autoencoders with fully self-supervised learning. During training, our method unmixes the input into the multiple encoder output spaces and then remixes these representations within the single decoder for a simple reconstruction of the input. Then to perform source inference we introduce a novel _encoding masking_ technique whereby masking out all but one of the encodings enables the decoder to estimate a source signal. To achieve consistent source separation, we also introduce a so-called **sparse mixing loss** for the decoder that encourages sparsity between the unmixed encoding spaces throughout and a so-called **zero reconstruction loss** on the decoder that assists with coherent source estimations. We conduct experiments on a toy dataset, the _triangles & circles_ dataset, and with real-world biosignal recordings from a polysomnography sleep study for extracting respiration.
@@ -108,13 +108,16 @@ We evaluate our method by extracting the respiratory rate from the estimated sou
 ### Cite our work
 If you find this repository helpful, please cite us.
 ```
-@misc{webster2024blind,
-      title={Blind Source Separation of Single-Channel Mixtures via Multi-Encoder Autoencoders}, 
-      author={Matthew B. Webster and Joonnyong Lee},
-      year={2024},
-      eprint={2309.07138},
-      archivePrefix={arXiv},
-      primaryClass={eess.SP}
+@article{WEBSTER2025131008,
+title = {Blind Source Separation of Single-Channel Mixtures via Multi-Encoder Autoencoders},
+journal = {Neurocomputing},
+pages = {131008},
+year = {2025},
+issn = {0925-2312},
+doi = {https://doi.org/10.1016/j.neucom.2025.131008},
+url = {https://www.sciencedirect.com/science/article/pii/S0925231225016807},
+author = {Matthew B. Webster and Joonnyong Lee},
+keywords = {Deep learning, Signals processing, Blind source separation}
 }
 ```
 ### Acknowledgments
