@@ -1,7 +1,7 @@
 
 # Blind Source Separation of Single-Channel Mixtures via Multi-Encoder Autoencoders
 
-**Paper Links:** [Neurocomputing](https://doi.org/10.1016/j.neucom.2025.131008) [arXiv preprint](https://arxiv.org/abs/2309.07138)
+**Paper Links:** [Neurocomputing](https://doi.org/10.1016/j.neucom.2025.131008), [arXiv preprint](https://arxiv.org/abs/2309.07138)
 
 ## Summary
 We propose a novel method for addressing blind source separation of non-linear mixtures via multi-encoder single-decoder autoencoders with fully self-supervised learning. During training, our method unmixes the input into the multiple encoder output spaces and then remixes these representations within the single decoder for a simple reconstruction of the input. Then to perform source inference we introduce a novel _encoding masking_ technique whereby masking out all but one of the encodings enables the decoder to estimate a source signal. To achieve consistent source separation, we also introduce a so-called **sparse mixing loss** for the decoder that encourages sparsity between the unmixed encoding spaces throughout and a so-called **zero reconstruction loss** on the decoder that assists with coherent source estimations. We conduct experiments on a toy dataset, the _triangles & circles_ dataset, and with real-world biosignal recordings from a polysomnography sleep study for extracting respiration.
